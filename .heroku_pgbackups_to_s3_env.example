@@ -1,0 +1,3 @@
+# Put your environment data in here
+encryption_key="File Encryption Key"
+s3_bucket="your-s3-bucket"
