@@ -27,9 +27,52 @@ storing them on S3.
 
 ## Install
 
-Coming soon.
+### 1. Install dependencies (Ubuntu / Debian)
+
+```
+wget -O- https://toolbelt.heroku.com/install-ubuntu.sh | sh
+aptitude install gnupg s3cmd
+```
+
+### 2. Configure gpg
+
+Create a gpg key if you haven't already:
+
+```
+gpg --gen-key # more about this [here](http://serverfault.com/a/489148)
+# make sure to backup your passphrase and secret key. If not backed up or forgotten, you backups will be useless!
+gpg --armor --output file-enc-privkey.asc --export-secret-keys 'File Encryption Key'
+```
+
+To import an existing public key do the following:
+
+```
+# Export it from where you created it
+gpg --armor --output file-enc-pubkey.txt --export 'File Encryption Key'
+# transfer it to your backup server
+scp file-enc-pubkey.txt user@your-backup-server.com:~/
+# go to your backup server and import the public key
+gpg --import file-enc-pubkey.txt
+```
+
+### 3. Configure s3cmd
+
+```
+s3cmd --configure # add your AWS Access Key ID and Secret Access Key
+```
+
+### 4. Install script
+
+```
+wget -O- https://raw.github.com/codegestalt/heroku-pgbackups-to-s3/master/install.sh | sh
+```
 
 ## Todo
 
 - Push a notification to a Slack channel when backup is completed or failed e.g. `<Backup Bot> PG:Backup Status (15 successful, 2 failed [app1, app2])`
 - Logfile which logs activities
+
+## Contribute
+
+As said on the top, this is a quick and dirty script.
+If you want to improve it, feel free to do so.
