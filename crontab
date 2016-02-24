@@ -1,0 +1,1 @@
+0 2 * * * root /etc/cron.custom/heroku-pgbackups-to-s3.sh
