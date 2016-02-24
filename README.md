@@ -27,14 +27,20 @@ storing them on S3.
 
 ## Install
 
-### 1. Install dependencies (Ubuntu / Debian)
+**1. Install dependencies (Ubuntu / Debian)**
 
 ```
 wget -O- https://toolbelt.heroku.com/install-ubuntu.sh | sh
 aptitude install gnupg s3cmd
 ```
 
-### 2. Configure gpg
+**2. Login with Heroku**
+
+```
+heroku login
+```
+
+**3. Configure gpg**
 
 Create a gpg key if you haven't already:
 
@@ -55,16 +61,25 @@ scp file-enc-pubkey.txt user@your-backup-server.com:~/
 gpg --import file-enc-pubkey.txt
 ```
 
-### 3. Configure s3cmd
+**4. Configure s3cmd**
 
 ```
 s3cmd --configure # add your AWS Access Key ID and Secret Access Key
 ```
 
-### 4. Install script
+**5. Install script**
 
 ```
 wget -O- https://raw.github.com/codegestalt/heroku-pgbackups-to-s3/master/install.sh | sh
+```
+
+**6. Edit configuration**
+
+Now the last thing you need to do is edit the configuration `~/.heroku_pgbackups_to_s3_env.example` according to your needs:
+
+```
+encryption_key="File Encryption Key" # your public gpg encryption key
+s3_bucket="your-s3-bucket" # your s3 backup bucket
 ```
 
 ## Todo
