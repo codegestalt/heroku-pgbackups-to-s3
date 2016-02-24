@@ -43,7 +43,7 @@ done
 # 2. Compress and encrypt backups
 # ===============================
 tar -zcf "$backup_dir".tar.gz --directory="$backup_dir" .
-gpg --output "$backup_dir".tar.gz.gpg --encrypt --recipient "$encryption_key" "$backup_dir".tar.gz
+gpg --trust-model always --output "$backup_dir".tar.gz.gpg --encrypt --recipient "$encryption_key" "$backup_dir".tar.gz
 
 # 3. Upload backup to s3
 # ======================
