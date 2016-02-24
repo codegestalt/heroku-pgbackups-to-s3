@@ -10,7 +10,7 @@ curl --silent --output /etc/cron.custom/heroku-pgbackups-to-s3.sh https://raw.gi
 
 # Add cronjob to the crontab file
 echo "Adding cronjob to /etc/crontab"
-curl --silent https://raw.github.com/codegestalt/heroku-pgbackups-to-s3/master/crontab >> /etc/crontab
+curl --silent https://raw.githubusercontent.com/codegestalt/heroku-pgbackups-to-s3/master/crontab >> /etc/crontab
 
 # Set permissions
 echo "Setting permissions for /etc/cron.custom/heroku-pgbackups-to-s3.sh"
